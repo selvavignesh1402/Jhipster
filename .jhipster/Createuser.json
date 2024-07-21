@@ -1,0 +1,62 @@
+{
+  "annotations": {
+    "changelogDate": "20240721054710"
+  },
+  "dto": "no",
+  "fields": [
+    {
+      "fieldName": "rollNo",
+      "fieldType": "String",
+      "fieldValidateRules": ["required", "unique", "pattern"],
+      "fieldValidateRulesPattern": "^[a-zA-Z0-9]*$"
+    },
+    {
+      "fieldName": "userName",
+      "fieldType": "String",
+      "fieldValidateRules": ["required", "unique"]
+    },
+    {
+      "fieldName": "password",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "department",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "designation",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "email",
+      "fieldType": "String",
+      "fieldValidateRules": ["required", "unique"]
+    },
+    {
+      "fieldName": "userImage",
+      "fieldType": "byte[]",
+      "fieldTypeBlobContent": "image"
+    },
+    {
+      "fieldName": "roleStatus",
+      "fieldType": "status",
+      "fieldValidateRules": ["required"],
+      "fieldValues": "S1"
+    },
+    {
+      "fieldName": "role",
+      "fieldType": "role",
+      "fieldValidateRules": ["required"],
+      "fieldValues": "S1"
+    }
+  ],
+  "name": "Createuser",
+  "pagination": "pagination",
+  "readOnly": false,
+  "relationships": [],
+  "searchEngine": "no",
+  "service": "serviceClass"
+}

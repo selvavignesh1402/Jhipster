@@ -3,6 +3,7 @@ import { Translate, translate, ValidatedField, ValidatedForm, isEmail } from 're
 import { Row, Col, Alert, Button } from 'reactstrap';
 import { toast } from 'react-toastify';
 import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 import PasswordStrengthBar from 'app/shared/layout/password/password-strength-bar';
 import { useAppDispatch, useAppSelector } from 'app/config/store';
@@ -11,6 +12,7 @@ import { handleRegister, reset } from './register.reducer';
 export const RegisterPage = () => {
   const [password, setPassword] = useState('');
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
 
   useEffect(
     () => () => {
@@ -21,8 +23,10 @@ export const RegisterPage = () => {
 
   const currentLocale = useAppSelector(state => state.locale.currentLocale);
 
-  const handleValidSubmit = ({ username, email, firstPassword }) => {
-    dispatch(handleRegister({ login: username, email, password: firstPassword, langKey: currentLocale }));
+  const handleValidSubmit = ({ username, email, firstPassword, companyName, companyShortName, licence }) => {
+    dispatch(
+      handleRegister({ login: username, email, password: firstPassword, langKey: currentLocale, companyName, companyShortName, licence }),
+    );
   };
 
   const updatePassword = event => setPassword(event.target.value);
@@ -32,6 +36,9 @@ export const RegisterPage = () => {
   useEffect(() => {
     if (successMessage) {
       toast.success(translate(successMessage));
+      setTimeout(() => {
+        navigate('/login');
+      }, 4000);
     }
   }, [successMessage]);
 
@@ -47,6 +54,36 @@ export const RegisterPage = () => {
       <Row className="justify-content-center">
         <Col md="8">
           <ValidatedForm id="register-form" onSubmit={handleValidSubmit}>
+            <ValidatedField
+              name="companyName"
+              label={translate('global.form.companyName.label')}
+              placeholder={translate('global.form.companyName.placeholder')}
+              validate={{
+                required: { value: true, message: translate('register.messages.validate.companyName.required') },
+                pattern: {
+                  value: /^[a-zA-Z0-9]+$/,
+                  message: translate('register.messages.validate.companyName.pattern'),
+                },
+                minLength: { value: 1, message: translate('register.messages.validate.companyName.minlength') },
+                maxLength: { value: 50, message: translate('register.messages.validate.companyName.maxlength') },
+              }}
+              data-cy="companyName"
+            />
+            <ValidatedField
+              name="companyShortName"
+              label={translate('global.form.companyShortName.label')}
+              placeholder={translate('global.form.companyShortName.placeholder')}
+              validate={{
+                required: { value: true, message: translate('register.messages.validate.companyShortName.required') },
+                pattern: {
+                  value: /^[a-zA-Z0-9]+$/,
+                  message: translate('register.messages.validate.companyShortName.pattern'),
+                },
+                minLength: { value: 1, message: translate('register.messages.validate.companyShortName.minlength') },
+                maxLength: { value: 50, message: translate('register.messages.validate.companyShortName.maxlength') },
+              }}
+              data-cy="companyShortName"
+            />
             <ValidatedField
               name="username"
               label={translate('global.form.username.label')}
@@ -102,13 +139,24 @@ export const RegisterPage = () => {
               }}
               data-cy="secondPassword"
             />
+            <ValidatedField
+              name="licence"
+              label={translate('global.form.licence.label')}
+              placeholder={translate('global.form.licence.placeholder')}
+              validate={{
+                required: { value: true, message: translate('register.messages.validate.licence.required') },
+                minLength: { value: 1, message: translate('register.messages.validate.licence.minlength') },
+                maxLength: { value: 50, message: translate('register.messages.validate.licence.maxlength') },
+              }}
+              data-cy="licence"
+            />
             <Button id="register-submit" color="primary" type="submit" data-cy="submit">
               <Translate contentKey="register.form.button">Register</Translate>
             </Button>
           </ValidatedForm>
           <p>&nbsp;</p>
-          <Alert color="warning">
-            <span>
+          {/* <Alert color="warning"> */}
+          {/* <span>
               <Translate contentKey="global.messages.info.authenticated.prefix">If you want to</Translate>{' '}
             </span>
             <Link to="/login" className="alert-link">
@@ -120,8 +168,8 @@ export const RegisterPage = () => {
                 <br />- Administrator (login=&quot;admin&quot; and password=&quot;admin&quot;)
                 <br />- User (login=&quot;user&quot; and password=&quot;user&quot;).
               </Translate>
-            </span>
-          </Alert>
+            </span> */}
+          {/* </Alert> */}
         </Col>
       </Row>
     </div>

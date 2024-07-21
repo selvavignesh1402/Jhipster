@@ -7,6 +7,7 @@ import com.mycompany.company.security.AuthoritiesConstants;
 import com.mycompany.company.web.filter.SpaWebFilter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.ReactiveAuthenticationManager;
 import org.springframework.security.authentication.UserDetailsRepositoryReactiveAuthenticationManager;
 import org.springframework.security.config.annotation.method.configuration.EnableReactiveMethodSecurity;
@@ -85,7 +86,11 @@ public class SecurityConfiguration {
                     .pathMatchers("/api/account/reset-password/init").permitAll()
                     .pathMatchers("/api/account/reset-password/finish").permitAll()
                     .pathMatchers("/api/admin/**").hasAuthority(AuthoritiesConstants.ADMIN)
+                    // .pathMatchers("/api/manager/**").hasAuthority(AuthoritiesConstants.MANAGER)
+                    .pathMatchers(HttpMethod.POST, "/api/createusers").hasAuthority("ROLE_ADMIN") // Only admins can create users
+                    .pathMatchers(HttpMethod.GET, "/api/createusers").authenticated() 
                     .pathMatchers("/api/**").authenticated()
+                    // .pathMatchers("/**").permitAll()
                     .pathMatchers("/services/**").authenticated()
                     .pathMatchers("/v3/api-docs/**").hasAuthority(AuthoritiesConstants.ADMIN)
                     .pathMatchers("/management/health").permitAll()

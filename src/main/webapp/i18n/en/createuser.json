@@ -1,0 +1,34 @@
+{
+  "companyMongoApp": {
+    "createuser": {
+      "home": {
+        "title": "Createusers",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Createuser",
+        "createOrEditLabel": "Create or edit a Createuser",
+        "notFound": "No Createusers found"
+      },
+      "created": "A new Createuser is created with identifier {{ param }}",
+      "updated": "A Createuser is updated with identifier {{ param }}",
+      "deleted": "A Createuser is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Createuser {{ id }}?"
+      },
+      "detail": {
+        "title": "Createuser"
+      },
+      "id": "ID",
+      "rollNo": "Roll No",
+      "userName": "User Name",
+      "password": "Password",
+      "department": "Department",
+      "designation": "Designation",
+      "email": "Email",
+      "userImage": "User Image",
+      "roleStatus": "Role Status",
+      "role": "Role",
+      "login": "Login",
+      "langKey": "Language Key"
+    }
+  }
+}

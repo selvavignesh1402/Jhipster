@@ -87,7 +87,10 @@ public class AccountResource {
     public Mono<AdminUserDTO> getAccount() {
         return userService
             .getUserWithAuthorities()
-            .map(AdminUserDTO::new)
+            .map(user -> {
+                AdminUserDTO dto = new AdminUserDTO(user);
+                return dto;
+            })
             .switchIfEmpty(Mono.error(new AccountResourceException("User could not be found")));
     }
 
@@ -114,16 +117,17 @@ public class AccountResource {
                         return userRepository.findOneByLogin(userLogin);
                     }))
             .switchIfEmpty(Mono.error(new AccountResourceException("User could not be found")))
-            .flatMap(
-                user ->
-                    userService.updateUser(
-                        userDTO.getFirstName(),
-                        userDTO.getLastName(),
-                        userDTO.getEmail(),
-                        userDTO.getLangKey(),
-                        userDTO.getImageUrl()
-                    )
-            );
+            .flatMap(user ->
+                userService.updateUser(
+                    userDTO.getFirstName(),
+                    userDTO.getLastName(),
+                    userDTO.getEmail(),
+                    userDTO.getLangKey(),
+                    userDTO.getImageUrl(),
+                    userDTO.getCompanyName(), // Handle new field
+                    userDTO.getCompanyShortName(), // Handle new field
+                    userDTO.getLicence() // Handle new field
+                ));
     }
 
     /**

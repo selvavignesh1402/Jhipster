@@ -1,0 +1,45 @@
+{
+  "annotations": {
+    "changelogDate": "20240721101428"
+  },
+  "dto": "no",
+  "fields": [
+    {
+      "fieldName": "dept_name",
+      "fieldType": "String",
+      "fieldValidateRules": ["required", "unique", "pattern"],
+      "fieldValidateRulesPattern": "^[a-zA-Z0-9]*$"
+    },
+    {
+      "fieldName": "dept_sname",
+      "fieldType": "String",
+      "fieldValidateRules": ["required", "unique", "pattern"],
+      "fieldValidateRulesPattern": "^[a-zA-Z0-9]*$"
+    },
+    {
+      "fieldName": "dept_status",
+      "fieldType": "dept_st",
+      "fieldValidateRules": ["required"],
+      "fieldValues": "ACTIVE,NOT_ACTIVE"
+    },
+    {
+      "fieldName": "date",
+      "fieldType": "Instant"
+    }
+  ],
+  "name": "Department",
+  "pagination": "pagination",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityField": "id",
+      "otherEntityName": "createuser",
+      "otherEntityRelationshipName": "department",
+      "relationshipName": "createuser",
+      "relationshipSide": "left",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "searchEngine": "no",
+  "service": "serviceClass"
+}

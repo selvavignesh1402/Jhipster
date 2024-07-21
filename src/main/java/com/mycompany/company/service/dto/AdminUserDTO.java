@@ -10,7 +10,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 /**
- * A DTO representing a user, with his authorities.
+ * A DTO representing a user, with their authorities.
  */
 public class AdminUserDTO implements Serializable {
 
@@ -51,6 +51,12 @@ public class AdminUserDTO implements Serializable {
 
     private Set<String> authorities;
 
+    private String companyName;
+
+    private String companyShortName;
+
+    private String licence;
+
     public AdminUserDTO() {
         // Empty constructor needed for Jackson.
     }
@@ -69,6 +75,9 @@ public class AdminUserDTO implements Serializable {
         this.lastModifiedBy = user.getLastModifiedBy();
         this.lastModifiedDate = user.getLastModifiedDate();
         this.authorities = user.getAuthorities().stream().map(Authority::getName).collect(Collectors.toSet());
+        this.companyName = user.getCompanyName();
+        this.companyShortName = user.getCompanyShortName();
+        this.licence = user.getLicence();
     }
 
     public String getId() {
@@ -175,22 +184,75 @@ public class AdminUserDTO implements Serializable {
         this.authorities = authorities;
     }
 
-    // prettier-ignore
+    public String getCompanyName() {
+        return companyName;
+    }
+
+    public void setCompanyName(String companyName) {
+        this.companyName = companyName;
+    }
+
+    public String getCompanyShortName() {
+        return companyShortName;
+    }
+
+    public void setCompanyShortName(String companyShortName) {
+        this.companyShortName = companyShortName;
+    }
+
+    public String getLicence() {
+        return licence;
+    }
+
+    public void setLicence(String licence) {
+        this.licence = licence;
+    }
+
     @Override
     public String toString() {
-        return "AdminUserDTO{" +
-            "login='" + login + '\'' +
-            ", firstName='" + firstName + '\'' +
-            ", lastName='" + lastName + '\'' +
-            ", email='" + email + '\'' +
-            ", imageUrl='" + imageUrl + '\'' +
-            ", activated=" + activated +
-            ", langKey='" + langKey + '\'' +
-            ", createdBy=" + createdBy +
-            ", createdDate=" + createdDate +
-            ", lastModifiedBy='" + lastModifiedBy + '\'' +
-            ", lastModifiedDate=" + lastModifiedDate +
-            ", authorities=" + authorities +
-            "}";
+        return (
+            "AdminUserDTO{" +
+            "login='" +
+            login +
+            '\'' +
+            ", firstName='" +
+            firstName +
+            '\'' +
+            ", lastName='" +
+            lastName +
+            '\'' +
+            ", email='" +
+            email +
+            '\'' +
+            ", imageUrl='" +
+            imageUrl +
+            '\'' +
+            ", activated=" +
+            activated +
+            ", langKey='" +
+            langKey +
+            '\'' +
+            ", createdBy=" +
+            createdBy +
+            ", createdDate=" +
+            createdDate +
+            ", lastModifiedBy='" +
+            lastModifiedBy +
+            '\'' +
+            ", lastModifiedDate=" +
+            lastModifiedDate +
+            ", authorities=" +
+            authorities +
+            ", companyName='" +
+            companyName +
+            '\'' +
+            ", companyShortName='" +
+            companyShortName +
+            '\'' +
+            ", licence='" +
+            licence +
+            '\'' +
+            "}"
+        );
     }
 }

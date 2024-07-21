@@ -19,6 +19,7 @@ import org.springframework.data.mongodb.core.mapping.Field;
 /**
  * A user.
  */
+@SuppressWarnings("unused")
 @org.springframework.data.mongodb.core.mapping.Document(collection = "jhi_user")
 public class User extends AbstractAuditingEntity<String> implements Serializable {
 
@@ -73,6 +74,15 @@ public class User extends AbstractAuditingEntity<String> implements Serializable
 
     @Field("reset_date")
     private Instant resetDate = null;
+
+    @Field(name = "company_name")
+    private String companyName;
+
+    @Field(name = "company_short_name")
+    private String companyShortName;
+
+    @Field(name = "licence")
+    private String licence;
 
     @JsonIgnore
     private Set<Authority> authorities = new HashSet<>();
@@ -139,7 +149,7 @@ public class User extends AbstractAuditingEntity<String> implements Serializable
     }
 
     public void setActivated(boolean activated) {
-        this.activated = activated;
+        this.activated = true;
     }
 
     public String getActivationKey() {
@@ -182,6 +192,30 @@ public class User extends AbstractAuditingEntity<String> implements Serializable
         this.authorities = authorities;
     }
 
+    public String getCompanyName() {
+        return companyName;
+    }
+
+    public void setCompanyName(String companyName) {
+        this.companyName = companyName;
+    }
+
+    public String getCompanyShortName() {
+        return companyShortName;
+    }
+
+    public void setCompanyShortName(String companyShortName) {
+        this.companyShortName = companyShortName;
+    }
+
+    public String getLicence() {
+        return licence;
+    }
+
+    public void setLicence(String licence) {
+        this.licence = licence;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -201,16 +235,19 @@ public class User extends AbstractAuditingEntity<String> implements Serializable
 
     // prettier-ignore
     @Override
-    public String toString() {
-        return "User{" +
-            "login='" + login + '\'' +
-            ", firstName='" + firstName + '\'' +
-            ", lastName='" + lastName + '\'' +
-            ", email='" + email + '\'' +
-            ", imageUrl='" + imageUrl + '\'' +
-            ", activated='" + activated + '\'' +
-            ", langKey='" + langKey + '\'' +
-            ", activationKey='" + activationKey + '\'' +
-            "}";
+public String toString() {
+    return "User{" +
+        "login='" + login + '\'' +
+        ", firstName='" + firstName + '\'' +
+        ", lastName='" + lastName + '\'' +
+        ", email='" + email + '\'' +
+        ", imageUrl='" + imageUrl + '\'' +
+        ", activated='" + activated + '\'' +
+        ", langKey='" + langKey + '\'' +
+        ", activationKey='" + activationKey + '\'' +
+        ", companyName='" + companyName + '\'' +
+        ", companyShortName='" + companyShortName + '\'' +
+        ", licence='" + licence + '\'' +
+        "}";
     }
 }

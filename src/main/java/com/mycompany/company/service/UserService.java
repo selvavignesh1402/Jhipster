@@ -32,9 +32,7 @@ public class UserService {
     private static final Logger log = LoggerFactory.getLogger(UserService.class);
 
     private final UserRepository userRepository;
-
     private final PasswordEncoder passwordEncoder;
-
     private final AuthorityRepository authorityRepository;
 
     public UserService(UserRepository userRepository, PasswordEncoder passwordEncoder, AuthorityRepository authorityRepository) {
@@ -121,6 +119,10 @@ public class UserService {
                     newUser.setActivated(false);
                     // new user gets registration key
                     newUser.setActivationKey(RandomUtil.generateActivationKey());
+                    // Set new fields
+                    newUser.setCompanyName(userDTO.getCompanyName());
+                    newUser.setCompanyShortName(userDTO.getCompanyShortName());
+                    newUser.setLicence(userDTO.getLicence());
                     return newUser;
                 })
             )
@@ -150,6 +152,9 @@ public class UserService {
         } else {
             user.setLangKey(userDTO.getLangKey());
         }
+        user.setCompanyName(userDTO.getCompanyName()); // Set new field
+        user.setCompanyShortName(userDTO.getCompanyShortName()); // Set new field
+        user.setLicence(userDTO.getLicence()); // Set new field
         return Flux.fromIterable(userDTO.getAuthorities() != null ? userDTO.getAuthorities() : new HashSet<>())
             .flatMap(authorityRepository::findById)
             .doOnNext(authority -> user.getAuthorities().add(authority))
@@ -186,6 +191,9 @@ public class UserService {
                 user.setImageUrl(userDTO.getImageUrl());
                 user.setActivated(userDTO.isActivated());
                 user.setLangKey(userDTO.getLangKey());
+                user.setCompanyName(userDTO.getCompanyName()); // Update new field
+                user.setCompanyShortName(userDTO.getCompanyShortName()); // Update new field
+                user.setLicence(userDTO.getLicence()); // Update new field
                 Set<Authority> managedAuthorities = user.getAuthorities();
                 managedAuthorities.clear();
                 return Flux.fromIterable(userDTO.getAuthorities())
@@ -214,9 +222,21 @@ public class UserService {
      * @param email     email id of user.
      * @param langKey   language key.
      * @param imageUrl  image URL of user.
+     * @param string3
+     * @param string2
+     * @param string
      * @return a completed {@link Mono}.
      */
-    public Mono<Void> updateUser(String firstName, String lastName, String email, String langKey, String imageUrl) {
+    public Mono<Void> updateUser(
+        String firstName,
+        String lastName,
+        String email,
+        String langKey,
+        String imageUrl,
+        String string,
+        String string2,
+        String string3
+    ) {
         return SecurityUtils.getCurrentUserLogin()
             .flatMap(userRepository::findOneByLogin)
             .flatMap(user -> {

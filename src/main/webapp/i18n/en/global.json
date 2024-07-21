@@ -1,13 +1,15 @@
 {
   "global": {
-    "title": "CompanyMongo",
+    "title": "ChatMongo",
     "browsehappy": "You are using an <strong>outdated</strong> browser. Please <a href=\"http://browsehappy.com/?locale=en\">upgrade your browser</a> to improve your experience.",
     "menu": {
       "home": "Home",
       "jhipster-needle-menu-add-element": "JHipster will add additional menu entries here (do not translate!)",
       "entities": {
         "main": "Entities",
-        "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
+        "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)",
+        "department": "Department",
+        "createuser": "Createuser"
       },
       "account": {
         "main": "Account",
@@ -33,6 +35,10 @@
       "language": "Language"
     },
     "form": {
+      "companyName.label": "CompanyName",
+      "companyName.placeholder": "Your Companyname",
+      "companyShortName.label": "CompanyShortName",
+      "companyShortName.placeholder": "Companyshortname",
       "username.label": "Username",
       "username.placeholder": "Your username",
       "currentpassword.label": "Current password",
@@ -42,7 +48,9 @@
       "confirmpassword.label": "New password confirmation",
       "confirmpassword.placeholder": "Confirm the new password",
       "email.label": "Email",
-      "email.placeholder": "Your email"
+      "email.placeholder": "Your email",
+      "licence.label": "Licence",
+      "licence.placeholder": "Your Licence"
     },
     "messages": {
       "info": {
@@ -141,6 +149,12 @@
     "file": {
       "could.not.extract": "Could not extract file",
       "not.image": "File was expected to be an image but was found to be \"{{ fileType }}\""
+    }
+  },
+  "companyMongoApp": {
+    "department": {
+      "1": "Department A",
+      "2": "Department B"
     }
   },
   "footer": "This is your footer"

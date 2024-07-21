@@ -1,5 +1,6 @@
 package com.mycompany.company.repository;
 
+import com.mycompany.company.domain.Createuser;
 import com.mycompany.company.domain.User;
 import java.time.Instant;
 import org.springframework.data.domain.*;
@@ -16,6 +17,8 @@ public interface UserRepository extends ReactiveMongoRepository<User, String> {
     Mono<User> findOneByActivationKey(String activationKey);
     Flux<User> findAllByActivatedIsFalseAndActivationKeyIsNotNullAndCreatedDateBefore(Instant dateTime);
     Mono<User> findOneByResetKey(String resetKey);
+
+    // Update these methods
     Mono<User> findOneByEmailIgnoreCase(String email);
     Mono<User> findOneByLogin(String login);
 

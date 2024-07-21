@@ -1,0 +1,9 @@
+{
+  "companyMongoApp": {
+    "dept_st": {
+      "null": "",
+      "ACTIVE": "ACTIVE",
+      "NOT_ACTIVE": "NOT_ACTIVE"
+    }
+  }
+}
