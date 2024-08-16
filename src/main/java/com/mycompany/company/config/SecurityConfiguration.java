@@ -85,6 +85,7 @@ public class SecurityConfiguration {
                     .pathMatchers("/api/activate").permitAll()
                     .pathMatchers("/api/account/reset-password/init").permitAll()
                     .pathMatchers("/api/account/reset-password/finish").permitAll()
+                    .pathMatchers("/api/check-company").permitAll()
                     .pathMatchers("/api/admin/**").hasAuthority(AuthoritiesConstants.ADMIN)
                     // .pathMatchers("/api/manager/**").hasAuthority(AuthoritiesConstants.MANAGER)
                     .pathMatchers(HttpMethod.POST, "/api/createusers").hasAuthority("ROLE_ADMIN") // Only admins can create users

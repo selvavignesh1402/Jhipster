@@ -172,8 +172,8 @@ const Createuser = () => {
                   <td>{createuser.designation}</td>
                   <td>{createuser.email}</td>
                   <td>{createuser.userImage}</td>
-                  <td>{createuser.roleStatus}</td>
-                  <td>{createuser.role}</td>
+                  {/* <td>{createuser.roleStatus}</td>
+                  <td>{createuser.role}</td> */}
                   {/* <td>{createuser.login}</td>
                   <td>{createuser.langKey}</td> */}
                   <td className="text-end">

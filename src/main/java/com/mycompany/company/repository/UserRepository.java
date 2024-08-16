@@ -3,7 +3,10 @@ package com.mycompany.company.repository;
 import com.mycompany.company.domain.Createuser;
 import com.mycompany.company.domain.User;
 import java.time.Instant;
+import java.util.List;
+import java.util.Optional;
 import org.springframework.data.domain.*;
+import org.springframework.data.mongodb.repository.Query;
 import org.springframework.data.mongodb.repository.ReactiveMongoRepository;
 import org.springframework.stereotype.Repository;
 import reactor.core.publisher.Flux;
@@ -25,6 +28,8 @@ public interface UserRepository extends ReactiveMongoRepository<User, String> {
     Flux<User> findAllByIdNotNull(Pageable pageable);
 
     Flux<User> findAllByIdNotNullAndActivatedIsTrue(Pageable pageable);
+
+    Mono<Boolean> existsByCompanyName(String companyName);
 
     Mono<Long> count();
 }

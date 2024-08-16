@@ -12,6 +12,7 @@ import com.mycompany.company.service.dto.UserDTO;
 import java.time.Instant;
 import java.time.temporal.ChronoUnit;
 import java.util.*;
+import java.util.stream.Collectors;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Pageable;
@@ -302,6 +303,10 @@ public class UserService {
     public Mono<User> getUserWithAuthorities() {
         return SecurityUtils.getCurrentUserLogin().flatMap(userRepository::findOneByLogin);
     }
+
+    // public boolean doesCompanyExist(String companyName) {
+    //     return userRepository.existsByCompanyName(companyName).isPresent();
+    // }
 
     /**
      * Not activated users should be automatically deleted after 3 days.

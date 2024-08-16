@@ -1,0 +1,84 @@
+/* Form Container */
+.unique-company-check-form {
+  max-width: 400px;
+  margin: 20px auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  background-color: #f9f9f9;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Label Styling */
+.unique-company-check-label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: bold;
+  font-size: 14px;
+  color: #333;
+}
+
+/* Input Field Styling */
+.unique-company-check-input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  border: 1px solid #ddd;
+  box-sizing: border-box;
+  font-size: 14px;
+  background-color: #fff;
+}
+
+/* Button Styling */
+.unique-company-check-button {
+  width: 100%;
+  padding: 12px;
+  background-color: #3f72af;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.unique-company-check-button:hover {
+  background-color: #112d4e;
+}
+
+/* Error Message Styling */
+.unique-company-check-error {
+  text-align: center;
+  color: red;
+  font-weight: bold;
+  margin-top: 15px;
+}
+
+/* Form Header Styling */
+.unique-company-check-header {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #3f72af;
+}
+
+/* Responsive Design */
+@media (max-width: 500px) {
+  .unique-company-check-form {
+    padding: 15px;
+  }
+
+  .unique-company-check-button {
+    font-size: 14px;
+    padding: 10px;
+  }
+
+  .unique-company-check-label,
+  .unique-company-check-input {
+    font-size: 13px;
+  }
+
+  .unique-company-check-header {
+    font-size: 18px;
+  }
+}

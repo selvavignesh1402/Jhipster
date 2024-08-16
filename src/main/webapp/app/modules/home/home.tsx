@@ -24,6 +24,8 @@ export const Home = () => {
         </p>
         {account?.login ? (
           <div>
+            {/* <Link to="/company-check" className="alert-link">
+            Check Your Company</Link> */}
             <Alert color="success">
               <Translate contentKey="home.logged.message" interpolate={{ username: account.login }}>
                 You are logged in as user {account.login}.
